@@ -3,7 +3,7 @@
 {%block content%}
 {% if error %}
 
-{{error}}
+<h4 class = "alert alert-danger" >{{error}} </h4>
 
 <br />
 <br />
@@ -27,8 +27,13 @@ Confirm Password:
 <br />
 <input class ="btn btn-primary" type ="submit" value = "Sign Up!"/>
 <br />
+<br />
+<div class = "share-button">
+    <button><a href = "{%url 'login'%}"> Login?</a> </button>
+</div>
 
 
 </form>
+
 
 {%endblock%}

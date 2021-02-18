@@ -3,9 +3,8 @@
 {%block content%}
 {% if error %}
 
-{{error}}
+<h6 class = "col-5 alert alert-danger alert-dismissible " data-dismiss = "alert" >{{error}} </h6>
 
-<br />
 <br />
 
 {% endif %}
@@ -25,7 +24,12 @@ Password :
 <input class ="btn btn-primary" type ="submit" value = "Login!"/>
 <br />
 
+<br />
+<div class = "share-button">
+<button><a href = "{%url 'signup'%}"> signup?</a> </button>
+</div>
 
 </form>
+
 
 {%endblock%}

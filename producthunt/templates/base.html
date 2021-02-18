@@ -2,21 +2,73 @@
 <!DOCTYPE html>
 
 <html lang="en">
-  <head>
+ 
+
+<head>
+  <style>
+    body {
+    height: 100%;
+  }
+    .sticky-footer {
+      position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.share-button {
+  padding-top: 2cm;
+  width: 20px;
+  height: 40px;
+  background: #41abd8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 50px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  
+}
+
+.share-button span{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #2d3436;
+  color: #f1f1f1;
+  text-align: center;
+  line-height: 80px;
+  z-index: 999;
+  transition: .6s linear;
+ 
+ 
+}
+
+
+  </style> 
     {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link href="{% static 'open-iconic/font/css/open-iconic-bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'open-iconic/open-iconic-master/font/css/open-iconic-bootstrap.css' %}" rel="stylesheet">
+    </head>
     <title>Product Hunt</title>
  <!-- Navbar -->
-
+ <body class ="p-3">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          {% if user.is_authenticated %}
+            
+            <p class ="badge badge-primary text-wrap list-inline-item">Hello 
+           
+            {{ user.username }}!
+            </p>
+          
+          {%endif%}
     <div class="container">
     <!-- Container wrapper -->
     <div class="container-fluid">
       <!-- Navbar brand -->
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="{%url 'home'%}">
         <img src = "{% static 'p.png' %}" height=30 Width =30 class = "d-inline-block align-top" /> Product Hunt
     </a>
       <!-- Toggle button -->
@@ -37,10 +89,11 @@
         <!-- Left links -->
         <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
-            Hello {{ user.username }}!
-            <br />
             
-             <a class="nav-item nav-link active" aria-current="page" href="javascript:{document.getElementById('logout').submit()}" onclick = "">Logout</a>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{%url 'create'%}"> <span class="oi oi-plus" title = "Add a Product!"></span></a>
+            </li>
+             <a class="nav-item nav-link active" aria-current="page" href="javascript:{document.getElementById('logout').submit()}" onclick = ""><span class="oi oi-account-logout" title = "Log OUT!"></span></a>
              <form id = "logout" method ="POST" action ="{%url 'logout'%}">
                 {%csrf_token%}
                 <input type="hidden" />
@@ -131,6 +184,24 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <br />
+  
+  
+
+
+<div class = "sticky-footer">
+
+<footer class="navbar absolute-bottom bg-light text-center text-lg-start ">
+   
+  <!-- Copyright -->
+  <div class="container text-center p-1" style="background-color: rgba(0, 0, 0, 0.2)">
+    © 2020 Copyright:
+    <a class="text-dark" href="">Made by <span class="oi oi-heart"> </span>  from vir </a>
+  </div>
+  <!-- Copyright -->
+</footer>
+</div>
+
 </body>
 </html>
 
